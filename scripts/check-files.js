@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const publicDir = path.resolve('public');
+const publicDir = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'public');
 
 try {
   const files = fs.readdirSync(publicDir);
