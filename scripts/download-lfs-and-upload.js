@@ -1,7 +1,7 @@
 import { put } from '@vercel/blob';
 
 // GitHub repo info
-const REPO_OWNER = 'chrisgaraude';
+const REPO_OWNER = 'Caue-Garaude';
 const REPO_NAME = 'imersao';
 const BRANCH = 'main';
 
