@@ -182,34 +182,36 @@ const App: React.FC = () => {
          {/* VIDEO EM DESTAQUE (primeiro de tudo) */}
          <FadeInSection delay={0.15} className="flex justify-center">
             <div className="w-full max-w-[360px] md:max-w-[420px] mx-auto">
-               <div className="aspect-[9/16] rounded-[24px] overflow-hidden relative border border-white/60 shadow-2xl shadow-terracotta/20 bg-transparent">
-               <div className="absolute inset-0 bg-terracotta/10 mix-blend-multiply pointer-events-none z-10"></div>
+               <div className="aspect-[9/16] rounded-[24px] overflow-hidden relative border border-white/60 shadow-2xl shadow-terracotta/20 bg-black">
 
-               {/* ✅ imagem de capa preenchendo 100% (some ao dar play) */}
-               <img
-                  src="/ressignifica.jpg"
-                  alt=""
-                  aria-hidden="true"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                     heroStarted ? 'opacity-0' : 'opacity-100'
-                  }`}
-               />
+               {/* Imagem de capa preenchendo 100% (some ao dar play) */}
+               {!heroStarted && (
+                  <img
+                     src="/ressignifica.jpg"
+                     alt="Capa do video Ressignifica"
+                     className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"
+                  />
+               )}
 
                <video
-                  className="w-full h-full object-contain relative z-20 bg-transparent"
+                  className="w-full h-full object-cover relative z-20"
                   controls
                   playsInline
+                  preload="metadata"
+                  poster="/ressignifica.jpg"
                   onPlay={() => setHeroStarted(true)}
                >
                   <source src="/ressignifica.MP4" type="video/mp4" />
-                  Seu navegador não suporta a tag de vídeo.
+                  Seu navegador nao suporta a tag de video.
                </video>
 
-               <div className="absolute bottom-4 left-0 right-0 text-center z-30 pointer-events-none px-4">
-                  <p className="font-serif italic text-white/95 text-base md:text-lg drop-shadow-md bg-black/45 backdrop-blur-sm inline-block px-4 py-1.5 rounded-full">
-                     "Dê o play. Você vai se reconhecer."
-                  </p>
-               </div>
+               {!heroStarted && (
+                  <div className="absolute bottom-4 left-0 right-0 text-center z-30 pointer-events-none px-4">
+                     <p className="font-serif italic text-white/95 text-base md:text-lg drop-shadow-md bg-black/45 backdrop-blur-sm inline-block px-4 py-1.5 rounded-full">
+                        "De o play. Voce vai se reconhecer."
+                     </p>
+                  </div>
+               )}
                </div>
             </div>
          </FadeInSection>
@@ -555,20 +557,20 @@ const App: React.FC = () => {
 
                return (
                <FadeInSection key={i} delay={i * 0.05} className="w-full">
-                  <div className="aspect-[9/16] bg-black/20 rounded-lg overflow-hidden relative border border-white/10 hover:border-terracotta/50 transition-all">
+                  <div className="aspect-[9/16] bg-black rounded-lg overflow-hidden relative border border-white/10 hover:border-terracotta/50 transition-all">
                      <video
-                     className="w-full h-full object-cover"
+                     className="w-full h-full object-cover relative z-10"
                      controls
                      playsInline
-                     preload="none"
+                     preload="metadata"
                      poster={posters[i]}
                      >
                      <source src={videoSrcs[i]} type="video/mp4" />
-                     Seu navegador não suporta a tag de vídeo.
+                     Seu navegador nao suporta a tag de video.
                      </video>
 
-                     <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent pointer-events-none">
-                     <p className="text-white text-xs font-bold tracking-widest">
+                     <div className="absolute top-3 left-3 z-20 pointer-events-none">
+                     <p className="text-white text-xs font-bold tracking-widest bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full">
                         DEPOIMENTO {i + 1}
                      </p>
                      </div>
